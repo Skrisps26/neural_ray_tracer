@@ -41,12 +41,16 @@ class HashNRC(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 64),
             nn.ReLU(),
-            nn.Linear(64, 3),
-            nn.Softplus(),
+            nn.Linear(64, 4), # [R, G, B, log_var]
         )
 
     def forward(self, x_pos, x_norm):
         x_pos_norm = (x_pos + 2.0) / 4.0  # Normalize world space to [0,1]
         x_pos_norm = torch.clamp(x_pos_norm, 0.0, 1.0)
         embed = self.embedder(x_pos_norm)
-        return self.net(torch.cat([embed, x_norm], dim=-1))
+        raw_out = self.net(torch.cat([embed, x_norm], dim=-1))
+        
+        # RGB must be positive, log_var is real
+        rgb = torch.nn.functional.softplus(raw_out[:, :3])
+        log_var = raw_out[:, 3:]
+        return torch.cat([rgb, log_var], dim=-1)
