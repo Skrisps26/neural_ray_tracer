@@ -52,4 +52,4 @@ python main.py
 ### Key Insight
 Learning-based rendering systems benefit from modeling uncertainty explicitly — not all regions of a scene are equally predictable. By allowing the model to express confidence, we can move toward hybrid systems that combine fast neural approximations with selective high-quality computation. A predictive training loop remains the primary mechanism for maintaining visual stability under motion.
 
-This project should be viewed as a practical exploration of neural rendering ideas under constrained settings, rather than a replacement for production-grade or research-grade global illumination systems. It serves as a testbed for investigating the relationship between temporal prediction and online network convergence.
+This project hould be viewed as a practical exploration of neural rendering ideas under constrained settings, rather than a replacement for production-grade or research-grade global illumination systems. It serves as a testbed for investigating the relationship between temporal prediction and online network convergence.
