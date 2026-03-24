@@ -1,0 +1,9 @@
+opencv-python
+drjit
+imageio
+matplotlib
+mitsuba
+numpy
+taichi
+torch
+tqdm
